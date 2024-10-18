@@ -1,11 +1,12 @@
+include("../modules/util.jl")       # Adjust the path as per your directory structure
+include("../modules/ranking.jl")
+include("../modules/preprocessing.jl")
+include("../modules/similarity_scorer.jl")
+include("../modules/data.jl")
+include("../modules/Metrics.jl")
+include("../modules/Method.jl")
+
 using ArgParse
-using util
-using ranking
-using preprocessing
-using Method
-using data
-using Metrics
-using preprocessing
 using JSON
 using DataStructures
 
@@ -40,9 +41,18 @@ parsed_args = parse_args(s, as_symbols=true)
 validationDataset = readDataset(parsed_args[:evaluation])
 
 # Load search space for the experiment
+using Pkg
+Pkg.build("PyCall")
 using PyCall
 
 hyperopt = pyimport("hyperopt")
+using Conda
+Conda.add("hyperopt")
+Conda.add("scikit-learn")
+
+
+
+
 space_script_path = parsed_args[:search_space_script]
 
 py"""
