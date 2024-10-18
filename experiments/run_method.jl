@@ -1,12 +1,14 @@
+
+include("../modules/util.jl")       # Adjust the path as per your directory structure
+include("../modules/ranking.jl")
+include("../modules/preprocessing.jl")
+include("../modules/similarity_scorer.jl")
+include("../modules/data.jl")
+include("../modules/Metrics.jl")
+include("../modules/Method.jl")
+
+
 using ArgParse
-using util
-using ranking
-using preprocessing
-using Method
-using data
-using Metrics
-using preprocessing
-using similarity_scorer
 using JSON
 
 
@@ -103,6 +105,12 @@ end
 
 function run_method(queries::Vector{Int64}, parsed_args::Dict)
     preOpt = generatePreprocessingOption(max_depth=parsed_args[:max_depth], filter_recursion=parsed_args[:filter_recursion],  unique_ukn_report=!parsed_args[:keep_ukn], preprocess_func=get(parsed_args, :trim_level, "function"), select_interesting_stacks=parsed_args[:interesting_stacks])
+    println("queries[end]")
+    println(queries[end])    
+    println("parsed_args[:bug_dataset]")
+    println(parsed_args[:bug_dataset])
+    println("preOpt")
+    println(preOpt)
     reportid2report, vocab = readReportsFromJson(parsed_args[:bug_dataset], preOpt, stopId=queries[end])
 
     # add ngrams to vocab
