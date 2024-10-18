@@ -1,14 +1,19 @@
-module ranking
+
 
 export initSunStrategy, SunStrategy, Bucket, evaluate
 
-using util
+
+include("/home/nrweerad/fast/FaST/modules/util.jl")       # Adjust the path as per your directory structure
+include("/home/nrweerad/fast/FaST/modules/preprocessing.jl")
+include("/home/nrweerad/fast/FaST/modules/similarity_scorer.jl")
+include("/home/nrweerad/fast/FaST/modules/Metrics.jl")
+include("/home/nrweerad/fast/FaST/modules/Method.jl")
+
+
 using Dates
 using DataStructures
-using preprocessing
-using similarity_scorer
-using Metrics
-using Method
+
+
 
 
 
@@ -189,4 +194,3 @@ function evaluate(strategy, queries, reportid2report::Dict{Int64, Report},  scor
     return [compute(m) for m in metrics]
 end
 
-end
