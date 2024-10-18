@@ -1,12 +1,14 @@
-module MLData
+
 
 export generate_pairs, generate_ftrs
 
+include("/home/nrweerad/fast/FaST/modules/util.jl")       # Adjust the path as per your directory structure
+include("/home/nrweerad/fast/FaST/modules/similarity_scorer.jl")
+include("/home/nrweerad/fast/FaST/modules/ranking.jl")
 
-using ranking
-using similarity_scorer
+
 using DataStructures
-using util
+
 using StatsBase
 using Random
 
@@ -205,4 +207,3 @@ function generate_ftrs(pairs, reportid2report, df_vec, pos_scaler)
     return (X,report_lengths, y)
 end
 
-end
