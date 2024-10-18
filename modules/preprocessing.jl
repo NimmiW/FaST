@@ -1,10 +1,13 @@
-module preprocessing
+
 
 export PreprocessingOption, generatePreprocessingOption, preprocessFunction, preprocessPackage!, stdFunctionPreprocess!, preprocessStacktrace, retrieveDocfreq!, DocFreqRemoval, removeCommonFunction!, createDocFreqRemoval
 
+include("/home/nrweerad/fast/FaST/modules/util.jl")  
+
+
 using SHA
 using DataStructures
-using util
+
 
 struct Frame
     func::String
@@ -555,8 +558,3 @@ function get_indices_to_remove(stack::Vector{UInt32}, removalStrategy::DocFreqRe
     # deleteat!(stack, idxToRemove)
 end
 
-
-
-
-
-end
