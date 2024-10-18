@@ -1,10 +1,12 @@
-module similarity_scorer
+
 
 export createScorer, computeSimilarity, Scorer, updateIndex!, MlScorer, PositionPosting, BasicScorer, ProposedScorer
 
-using util
-using aggregation_strategy
-using Method
+include("/home/nrweerad/fast/FaST/modules/util.jl")       # Adjust the path as per your directory structure
+include("/home/nrweerad/fast/FaST/modules/aggregation_strategy.jl")
+include("/home/nrweerad/fast/FaST/modules/Method.jl")
+
+
 using DataStructures
 
 
@@ -591,4 +593,3 @@ end
 end
 
 
-end
