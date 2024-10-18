@@ -1,8 +1,8 @@
-module aggregation_strategy
+
 
 export AggregationType, parseAggStrategy, update_score_matrix!, aggregate, Aggregation
 
-using util
+include("/home/nrweerad/fast/FaST/modules/util.jl") 
 using Statistics
 
 @enum AggregationType MAX AVG_QUERY AVG_CAND AVG_SHORT AVG_LONG AVG_QUERY_CAND
@@ -81,4 +81,3 @@ function aggregate(agg::Aggregation)::Float64
 end
 
 
-end
