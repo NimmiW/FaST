@@ -1,4 +1,4 @@
-module util
+
 
 export Vocab, setdefault!, Report, submittedEarlier, calculateDayTimestamp, DocFreq, updateDocFreq!,isduplicate, get_basic_args, aggregatePositionByFunction, sigmoid, set_doc_len!, generate_ngrams, add_ngram_to_vocab!, vocabLength, aggregatePositionByFuncKeepDim
 
@@ -268,4 +268,3 @@ function get_basic_args()
 end
 
 
-end
