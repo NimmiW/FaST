@@ -1,8 +1,12 @@
-module Metrics
 
-using util
+
+include("/home/nrweerad/fast/FaST/modules/util.jl") 
+
 using DataStructures
+using Pkg
+Pkg.build("PyCall")
 using PyCall
+pyimport_conda("sklearn.metrics", "scikit-learn")
 
 export createMAP_RecallRate, createBinaryPredictionROC, reset, update_metric!, compute, MAP_RecallRate, BinaryPredictionROC
 
@@ -121,8 +125,11 @@ function update_metric!(metric::BinaryPredictionROC, query::Report, recommendati
 
 end
 
+
 function compute(metric::BinaryPredictionROC)
+    
     SKLEARN_METRICS = pyimport("sklearn.metrics")
+    
     y_true = [Int(query.dup_id != query.id) for query in metric.queries]
     fpr, tpr, thresholds = SKLEARN_METRICS.roc_curve(y_true, collect(metric.scores), pos_label=1)
 
@@ -137,4 +144,3 @@ function compute(metric::BinaryPredictionROC)
 
 end
 
-end
