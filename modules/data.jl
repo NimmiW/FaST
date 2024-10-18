@@ -1,15 +1,19 @@
-module data
+
 
 export readReportsFromJson, ReportDataset, readDataset, load_preselected_candidates, readDataset, PreselectedCandidates, load_training_pairs, load_negative_candidates
 
+
+
+include("/home/nrweerad/fast/FaST/modules/util.jl") 
+include("/home/nrweerad/fast/FaST/modules/preprocessing.jl") 
+
+
 using DataStructures
-using preprocessing
-using util
 using JSON
 using Dates
 
 
-function readReportsFromJson(filePath, preOpt::PreprocessingOption; stopId::Int64=0)
+function readReportsFromJson(filePath::String, preOpt::PreprocessingOption; stopId::Int64=0)
     l = Dict{Int64, Report}()
     vocab = Vocab(Dict{String, UInt32}(), Set())
     lastCreationts = -1
@@ -126,4 +130,3 @@ function load_preselected_candidates(path)
 end
 
 
-end
